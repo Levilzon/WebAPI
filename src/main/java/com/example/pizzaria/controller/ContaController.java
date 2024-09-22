@@ -1,6 +1,8 @@
 package com.example.pizzaria.controller;
 
 import com.example.pizzaria.entity.Conta;
+import com.example.pizzaria.entity.ContaRequestDTO;
+import com.example.pizzaria.entity.ContaResponseDTO;
 import com.example.pizzaria.repository.RepositorioConta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +17,15 @@ public class ContaController {
     //testando se salva
 
     @PostMapping("save")
-    public Conta salvar(@RequestBody Conta objeto){
-        return conta.save(objeto);
+    public Conta salvar(@RequestBody ContaRequestDTO dados){
+        Conta cliente = new Conta(dados);
+        return conta.save(cliente);
     }
     @GetMapping("lista")
-   public List<Conta> lista(){
-        return conta.findAll();
+   public List<ContaResponseDTO> lista(){
+        List<ContaResponseDTO> contaList = conta.findAll().stream().map(ContaResponseDTO::new).toList();
+        return contaList;
+
    }
 
 
