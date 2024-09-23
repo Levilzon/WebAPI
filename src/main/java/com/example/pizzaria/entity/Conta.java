@@ -1,6 +1,8 @@
 package com.example.pizzaria.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -19,7 +21,9 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID conta_Id;
+    @NotNull
     private Long mesa_Id;
+    @NotNull
     private int pedido;
     private double pagamento;
 
